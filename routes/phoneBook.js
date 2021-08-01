@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { addNewNumber } from '../controllers/book.js';
+import { addNewNumber } from '../controllers/phoneBook.js';
 
 const router = Router();
 
