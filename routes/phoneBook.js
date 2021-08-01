@@ -1,9 +1,11 @@
 import { Router } from 'express';
 
-import { addNewNumber } from '../controllers/phoneBook.js';
+import { addNewNumber, getAllNumbers } from '../controllers/phoneBook.js';
 
 const router = Router();
 
-router.route('/addNewNumber').post(addNewNumber);
+router.route('/get-all-numbers').get(getAllNumbers);
+
+router.route('/add-new-number').post(addNewNumber);
 
 export { router };
