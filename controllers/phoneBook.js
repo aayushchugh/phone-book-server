@@ -52,6 +52,34 @@ export async function addNewNumber(req, res) {
 	}
 }
 
+export async function updateNumber(req, res) {
+	const { id } = req.params;
+	const { firstName, lastName, phone, email } = req.body;
+
+	const updatedContact = await PhoneBook.findByIdAndUpdate(
+		{ _id: id },
+		{
+			firstName: firstName,
+			lastName: lastName,
+			email: email,
+			phone: phone,
+		}
+	);
+
+	if (!updatedContact) {
+		return res.send({
+			message: 'contact not found',
+			status: 404,
+		});
+	}
+
+	res.send({
+		message: 'successfully updated',
+		status: 200,
+		data: updatedContact,
+	});
+}
+
 export async function deleteNumber(req, res) {
 	try {
 		const { id } = req.params;
@@ -61,13 +89,13 @@ export async function deleteNumber(req, res) {
 		if (!deletedNumber) {
 			return res.send({
 				message: 'contact not found',
-				status: 204,
+				status: 404,
 			});
 		}
 
 		res.send({
 			message: 'deleted successfully',
-			status: 202,
+			status: 200,
 			data: deletedNumber,
 		});
 	} catch (err) {
