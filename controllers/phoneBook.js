@@ -17,6 +17,25 @@ export async function getAllNumbers(req, res) {
 	}
 }
 
+export async function getSingleNumber(req, res) {
+	try {
+		const { id } = req.params;
+
+		const foundNumber = await PhoneBook.findOne({ _id: id });
+
+		res.send({
+			message: 'found number',
+			status: 200,
+			data: foundNumber,
+		});
+	} catch (err) {
+		res.send({
+			message: 'number not found',
+			status: 404,
+		});
+	}
+}
+
 export async function addNewNumber(req, res) {
 	try {
 		const { firstName, lastName, phone, email } = req.body;
