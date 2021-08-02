@@ -24,7 +24,7 @@ export async function getSingleNumber(req, res) {
 		const foundNumber = await PhoneBook.findOne({ _id: id });
 
 		res.send({
-			message: 'found number',
+			message: 'number found successfully',
 			status: 200,
 			data: foundNumber,
 		});
